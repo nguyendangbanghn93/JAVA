@@ -63,26 +63,6 @@ public class MainThread {
         }
     }
 
-    public static ArrayList<Account> getList() {
-        ArrayList<Account> list = new ArrayList<>();
-        try {
-            String cmd = "select * from account"; // chưa có phân trang.
-            PreparedStatement preparedStatement = ConnectionHelper.getConnection().prepareStatement(cmd);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                String username = resultSet.getString("username");
-                String password = resultSet.getString("password");
-                String fullName = resultSet.getString("fullName");
-                String createdDate = resultSet.getString("createdDate");
-                Account obj = new Account(username, password, fullName, createdDate);
-                list.add(obj);
-            }
-        } catch (Exception ex) {
-            System.err.println("Không thể lấy dữ liệu từ database. Message: " + ex.getMessage());
-        }
-        return list;
-    }
-
     public static void printAcc() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
